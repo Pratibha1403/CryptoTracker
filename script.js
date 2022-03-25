@@ -16,13 +16,12 @@ form.addEventListener('submit',(e)=>{
 });
 
 const fetchPrice = async(ctype) =>{
-    const r = await axios.get(`https://api.cryptonator.com/api/ticker/${ctype}`);
-    const price = r.data.ticker.price;
-    const volume = r.data.ticker.volume;
-    const change = r.data.ticker.change;
-    const base = r.data.ticker.base;
-    const target = r.data.ticker.target;
-    const time = r.data.timestamp;
+    const r = await axios.get(`https://api.coinstats.app/public/v1/coins/${ctype}?currency=USD`);
+    const price = r.data.coin.price;
+    const volume = r.data.coin.volume;
+    const change = r.data.coin.priceChange1d;
+    const base = r.data.coin.name;
+    const target = 'USD';
 
     res.innerHTML = `<tr style="background-color:blue;color:white;font-weight:700">
     <td>
@@ -49,12 +48,6 @@ const fetchPrice = async(ctype) =>{
         Change
     </td>
     <td>${change}</td>
-</tr>
-<tr>
-    <td>
-        Last Update
-    </td>
-    <td>${time}</td>
 </tr>`;
 
     timer = setTimeout(()=>fetchPrice(ctype),10000);
