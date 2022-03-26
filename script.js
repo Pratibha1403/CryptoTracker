@@ -22,6 +22,11 @@ const fetchPrice = async(ctype) =>{
     const change = r.data.coin.priceChange1d;
     const base = r.data.coin.name;
     const target = 'USD';
+    const p = '%';
+    var col = "green";
+    if(change<0){
+        col = "red";
+    }
 
     res.innerHTML = `<tr style="background-color:blue;color:white;font-weight:700">
     <td>
@@ -30,24 +35,24 @@ const fetchPrice = async(ctype) =>{
     <td>
         Value
     </td>
-</tr>
+    </tr>
 <tr>
-    <td>
+    <td style="color: black; font-family: 'Arial';">
         ${base}
     </td>
-    <td>${price} ${target}</td>
+    <td style ="color:${col}">${price} ${target}</td>
 </tr>
 <tr>
-    <td>
+    <td style="color: black; font-family: 'Arial'">
         Volume
     </td>
-    <td>${volume}</td>
+    <td>${volume}(24hrs)</td>
 </tr>
 <tr>
-    <td>
+    <td style="color: black; font-family: 'Arial';">
         Change
     </td>
-    <td>${change}</td>
+    <td style ="color:${col}">${change}(24hrs)</td>
 </tr>`;
 
     timer = setTimeout(()=>fetchPrice(ctype),10000);
