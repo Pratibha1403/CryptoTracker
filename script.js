@@ -22,7 +22,6 @@ const fetchPrice = async(ctype) =>{
     const change = r.data.coin.priceChange1d;
     const base = r.data.coin.name;
     const target = 'USD';
-    const p = '%';
     var col = "green";
     if(change<0){
         col = "red";
